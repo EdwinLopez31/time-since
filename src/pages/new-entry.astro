@@ -1,10 +1,31 @@
 ---
 import RootLayout from "../layouts/RootLayout.astro";
 import Sidebar from "@components/sidebar";
+import InputField from "@components/form/input-field";
 ---
 
 <RootLayout title='Create Entry'>
   <main class='bg-time-since-black min-h-screen flex'>
     <Sidebar />
+    <form class='w-full grid place-content-center gap-10' action=''>
+      <InputField placeholder='Event Name' />
+      <InputField
+        max={new Date().toISOString().slice(0, -1)}
+        type='datetime-local'
+        placeholder='Event Date'
+        name='eventDate'
+        id='Event_Date'
+        required
+      />
+      <InputField
+        max={new Date().toISOString().slice(0, -1)}
+        type='datetime-local'
+        placeholder='Event Description'
+        name='eventDate'
+        id='Event_Date'
+        required
+        isTextArea
+      />
+    </form>
   </main>
 </RootLayout>

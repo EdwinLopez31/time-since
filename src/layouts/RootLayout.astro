@@ -1,31 +1,39 @@
 ---
 export interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@100;300;400;700;900&display=swap'
+      rel='stylesheet'
+    />
+    <meta name='generator' content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 <style is:global>
-	html {
-		font-family: Lato, sans-serif;
-		background-color: #F6F6F6;
-		color: #EAEAEA;
-	}
+  html {
+    font-family: Lato, sans-serif;
+    background-color: #f6f6f6;
+    color: #eaeaea;
+  }
+  ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+  ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+  ::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+    color: transparent;
+  }
 </style>

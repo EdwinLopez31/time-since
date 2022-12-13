@@ -28,6 +28,21 @@ describe("Input Field", () => {
     );
   });
 
+  it("is type text", () => {
+    render(<InputField {...inputFieldProps} />);
+
+    expect(screen.getByRole("textbox")).toHaveAttribute("type", "text");
+  });
+
+  it("is type datetime-local", () => {
+    render(<InputField type='datetime-local' {...inputFieldProps} />);
+
+    expect(screen.getByLabelText(inputFieldProps.placeholder)).toHaveAttribute(
+      "type",
+      "datetime-local"
+    );
+  });
+
   it("displays the correct placeholder", () => {
     render(<InputField {...inputFieldProps} />);
 

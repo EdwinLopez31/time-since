@@ -1,34 +1,52 @@
+import InputFieldLabel from "./InputFieldLabel";
+import InputFieldWrapper from "./InputFieldWrapper";
+
 interface InputFieldProps {
-  type?: "text" | "number" | "email" | "date" | "datetime-local";
+  type?: "text" | "datetime-local";
   placeholder: string;
   name: string;
   id: string;
   isTextArea?: boolean;
   required?: boolean;
+  max?: string;
 }
 
-const InputField = (props: InputFieldProps) => {
-  const { type = "text" } = props;
-
-  if (props.isTextArea) {
+const InputField = ({
+  id,
+  name,
+  max,
+  placeholder,
+  required,
+  isTextArea,
+  type = "text",
+}: InputFieldProps) => {
+  if (isTextArea) {
     return (
-      <textarea
-        required={props.required}
-        placeholder={props.placeholder}
-        name={props.name}
-        id={props.id}
-      />
+      <InputFieldWrapper>
+        <textarea
+          required={required}
+          placeholder={placeholder}
+          name={name}
+          id={id}
+          className={`p-2 peer h-40 focus:border-l-[0.5rem] outline-none transition-[border] duration-100 border-2 w-full border-deepBlue-400 text-time-since-white placeholder-transparent focus:outline-none bg-transparent resize-none z-10`}
+        />
+        <InputFieldLabel id={id} placeholder={placeholder} />
+      </InputFieldWrapper>
     );
   }
-
   return (
-    <input
-      required={props.required}
-      type={type}
-      placeholder={props.placeholder}
-      name={props.name}
-      id={props.id}
-    />
+    <InputFieldWrapper>
+      <input
+        max={type === "datetime-local" ? max : ""}
+        required={required}
+        placeholder={placeholder}
+        name={name}
+        id={id}
+        type={type}
+        className={`p-2 peer h-10 focus:border-l-[0.5rem] outline-none transition-[border] duration-100 border-2 w-full border-deepBlue-400 text-time-since-white placeholder-transparent focus:outline-none bg-transparent z-10`}
+      />
+      <InputFieldLabel id={id} placeholder={placeholder} />
+    </InputFieldWrapper>
   );
 };
 
