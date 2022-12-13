@@ -1,4 +1,5 @@
-import HamburgerMenuIcon from "../../icons/HamburgerMenuIcon";
+// import HamburgerMenuIcon from "@icons/HamburgerMenuIcon";
+import HamburgerMenuIcon from "../../../icons/HamburgerMenuIcon";
 
 interface MenuButtonProps {
   onClick: () => void;
@@ -6,7 +7,7 @@ interface MenuButtonProps {
 
 const MenuButton = (props: MenuButtonProps) => (
   <button onClick={props.onClick} className='bg-time-since-dark-brown'>
-    <HamburgerMenuIcon className='w-10 h-10' />
+    <HamburgerMenuIcon className='w-8 h-8' />
   </button>
 );
 
