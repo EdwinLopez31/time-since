@@ -2,13 +2,14 @@
 import RootLayout from "../layouts/RootLayout.astro";
 import Sidebar from "@components/sidebar";
 import InputField from "@components/form/input-field";
+import Button from "@components/button";
 ---
 
 <RootLayout title='Create Entry'>
   <main class='bg-time-since-black min-h-screen flex'>
     <Sidebar />
     <section class='w-full grid place-content-center gap-8'>
-      <h1 class='text-3xl tracking-wider uppercase font-bold'>
+      <h1 class='text-3xl tracking-wider uppercase font-bold text-center'>
         Create new entry
       </h1>
       <form class='flex flex-col gap-10' action=''>
@@ -30,6 +31,7 @@ import InputField from "@components/form/input-field";
           required
           isTextArea
         />
+        <Button type='submit' text='Submit' />
       </form>
     </section>
   </main>
