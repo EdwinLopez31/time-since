@@ -6,6 +6,13 @@ module.exports = {
       fontFamily: {
         script: ["Great Vibes", "cursive"],
       },
+      colors: {
+        "time-since": {
+          black: "#1A1A1A",
+          white: "#EAEAEA",
+          "dark-brown": "#1E1C1B",
+        },
+      },
     },
   },
   plugins: [],
