@@ -1,7 +1,31 @@
 ---
 import RootLayout from "../layouts/RootLayout.astro";
+import Button from "@components/button";
 ---
 
 <RootLayout title='Time Since'>
-  <main class='bg-time-since-black min-h-screen'></main>
+  <main
+    class='bg-time-since-black min-h-screen grid place-content-center gap-8'
+  >
+    <h1 class='text-8xl'>Time Since</h1>
+    <div class='flex flex-col gap-4'>
+      <div class='flex justify-between gap-4'>
+        <Button widthFull intent='secondary' text='Login with Gmail' />
+        <Button widthFull text='Continue as guest' />
+      </div>
+      <Button intent='tertiary' text='About' />
+    </div>
+  </main>
 </RootLayout>
+
+<script>
+  const xpath = "//button[text()='Login With Gmail']";
+  var matchingElement = document.evaluate(
+    xpath,
+    document,
+    null,
+    XPathResult.FIRST_ORDERED_NODE_TYPE,
+    null
+  ).singleNodeValue;
+  console.log(matchingElement);
+</script>

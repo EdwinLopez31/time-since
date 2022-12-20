@@ -1,5 +1,5 @@
 ---
-import RootLayout from "../layouts/RootLayout.astro";
+import RootLayout from "@layouts/RootLayout.astro";
 import Sidebar from "@components/sidebar";
 import InputField from "@components/form/input-field";
 import Button from "@components/button";
@@ -13,7 +13,7 @@ import Button from "@components/button";
         Create new entry
       </h1>
       <form class='flex flex-col gap-10' action=''>
-        <InputField placeholder='Event Name' />
+        <InputField name='eventName' id='Event_ID' placeholder='Event Name' />
         <InputField
           max={new Date().toISOString().slice(0, -1)}
           type='datetime-local'

@@ -7,6 +7,10 @@ const buttonStyles = cva(
       intent: {
         primary: "bg-time-since-white text-time-since-black",
         secondary: "border-time-since-white border text-time-since-white",
+        tertiary: "text-time-since-white",
+      },
+      widthFull: {
+        true: "w-full",
       },
     },
     defaultVariants: {
@@ -24,11 +28,16 @@ interface ButtonProps extends VariantProps<typeof buttonStyles> {
 const Button = ({
   text,
   onClick,
+  widthFull = null,
   intent = "primary",
   type = "button",
 }: ButtonProps) => {
   return (
-    <button className={buttonStyles({ intent })} type={type} onClick={onClick}>
+    <button
+      className={buttonStyles({ intent, widthFull })}
+      type={type}
+      onClick={onClick}
+    >
       {text}
     </button>
   );
