@@ -1,38 +1,17 @@
 ---
 import RootLayout from "@layouts/RootLayout.astro";
 import Sidebar from "@components/sidebar";
-import InputField from "@components/form/input-field";
-import Button from "@components/button";
+import NewEntryForm from "@features/new-entry-form";
 ---
 
-<RootLayout title='Create Entry'>
+<RootLayout title='Create New Entry'>
   <main class='bg-time-since-black min-h-screen flex'>
     <Sidebar />
     <section class='w-full grid place-content-center gap-8'>
       <h1 class='text-3xl tracking-wider uppercase font-bold text-center'>
-        Create new entry
+        Create New entry
       </h1>
-      <form class='flex flex-col gap-10' action=''>
-        <InputField name='eventName' id='Event_ID' placeholder='Event Name' />
-        <InputField
-          max={new Date().toISOString().slice(0, -1)}
-          type='datetime-local'
-          placeholder='Event Date'
-          name='eventDate'
-          id='Event_Date'
-          required
-        />
-        <InputField
-          max={new Date().toISOString().slice(0, -1)}
-          type='datetime-local'
-          placeholder='Event Description'
-          name='eventDate'
-          id='Event_Date'
-          required
-          isTextArea
-        />
-        <Button type='submit' text='Submit' />
-      </form>
+      <NewEntryForm client:load />
     </section>
   </main>
 </RootLayout>

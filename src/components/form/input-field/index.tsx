@@ -9,26 +9,32 @@ interface InputFieldProps {
   isTextArea?: boolean;
   required?: boolean;
   max?: string;
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
-const InputField = ({
-  id,
-  name,
-  max,
-  placeholder,
-  required,
-  isTextArea,
-  type = "text",
-}: InputFieldProps) => {
+const InputField = (props: InputFieldProps) => {
+  //destructure given props, then spread the others to easily assign other props on component
+  const {
+    id,
+    placeholder,
+    max,
+    isTextArea,
+    value,
+    type = "text",
+    ...rest
+  } = props;
   if (isTextArea) {
     return (
       <InputFieldWrapper>
         <textarea
-          required={required}
+          {...rest}
           placeholder={placeholder}
-          name={name}
           id={id}
-          className={`p-2 peer h-40 focus:border-l-[0.5rem] outline-none transition-[border] duration-100 border-2 w-full border-deepBlue-400 text-time-since-white placeholder-transparent focus:outline-none bg-transparent resize-none z-10`}
+          value={value}
+          className={`p-2 peer h-40 focus:border-l-[0.5rem] outline-none transition-[border] duration-100 border-2  w-full ${
+            value !== "" && "invalid:border-red-500"
+          }  text-time-since-white placeholder-transparent focus:outline-none bg-transparent resize-none z-10`}
         />
         <InputFieldLabel id={id} placeholder={placeholder} />
       </InputFieldWrapper>
@@ -37,13 +43,15 @@ const InputField = ({
   return (
     <InputFieldWrapper>
       <input
+        {...rest}
         max={type === "datetime-local" ? max : ""}
-        required={required}
         placeholder={placeholder}
-        name={name}
         id={id}
         type={type}
-        className={`p-2 peer h-10 focus:border-l-[0.5rem] outline-none transition-[border] duration-100 border-2 w-full border-deepBlue-400 text-time-since-white placeholder-transparent focus:outline-none bg-transparent z-10`}
+        value={value}
+        className={`p-2 peer h-10 focus:border-l-[0.5rem] outline-none transition-[border] duration-100 border-2 w-full ${
+          value !== "" && "invalid:border-red-500"
+        }  text-time-since-white placeholder-transparent focus:outline-none bg-transparent z-10`}
       />
       <InputFieldLabel id={id} placeholder={placeholder} />
     </InputFieldWrapper>
