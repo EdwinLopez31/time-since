@@ -1,5 +1,6 @@
 import MenuButton from "./menu-button";
 import NewEntryButton from "./new-entry-button";
+import ViewAllEventsButton from "./view-all-events-button";
 
 const Sidebar = () => {
   return (
@@ -9,6 +10,7 @@ const Sidebar = () => {
     >
       <MenuButton onClick={() => console.log("hey")} />
       <NewEntryButton />
+      <ViewAllEventsButton />
     </aside>
   );
 };
