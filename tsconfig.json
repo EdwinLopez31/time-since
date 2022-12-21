@@ -9,7 +9,8 @@
       "@components/*": ["components/*"],
       "@features/*": ["features/*"],
       "@types/*": ["types/*"],
-      "@layouts/*": ["layouts/*"]
+      "@layouts/*": ["layouts/*"],
+      "@utils/*": ["utils/*"]
     },
     "types": ["jest", "@testing-library/jest-dom"]
   }

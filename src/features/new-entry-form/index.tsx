@@ -3,8 +3,7 @@
 import InputField from "../../components/form/input-field";
 import Button from "../../components/button/index";
 import { useState } from "react";
-import { connectToDB, indexedDB } from "utils/connectToIndexedDB";
-
+import { addRecord } from "utils/indexedDb";
 const NewEntryForm = () => {
   //we could opt for a useReducer here, but since this is just a small form I opted for useState
   //we could also use an object for the state
@@ -15,12 +14,16 @@ const NewEntryForm = () => {
   // for large forms it is better to use uncontrolled components, because every keystroke triggers a rerender
   // I suggest using react-hook-form library
 
-  const handleSubmit = (submitEvt: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (submitEvt: React.FormEvent<HTMLFormElement>) => {
     submitEvt.preventDefault();
-
-    connectToDB();
+    if (eventName && eventDate && eventDescription) {
+      await addRecord({
+        eventName,
+        eventDate,
+        eventDescription,
+      });
+    }
   };
-
   return (
     <form
       name='Create Entry'

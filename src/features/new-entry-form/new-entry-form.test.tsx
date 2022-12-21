@@ -1,6 +1,8 @@
-import { screen, render } from "@testing-library/react";
+import { screen, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import NewEntryForm from "./index";
+// import { getRecord } from "@utils/indexedDb";
+import { getAllRecord, addRecord } from "../../utils/indexedDb";
 
 describe("Create Entry Form Fields", () => {
   userEvent.setup();
@@ -31,18 +33,14 @@ describe("Create Entry Form Fields", () => {
       expect(screen.getByLabelText(/Event Date/i)).toBeInTheDocument();
     });
 
-    /*React testing library currently does not support DATE TIME LOCAL inputs
-     it("should reflect the date user typed", async () => {
-       render(<NewEntryForm />);
-       const inputField = screen.getByLabelText(/Event Date/i);
-       await userEvent.clear(inputField)
-       //await userEvent.type(inputField, "103119990600P");
+    it("should reflect the date user typed", async () => {
+      render(<NewEntryForm />);
+      const inputField = screen.getByLabelText(/Event Date/i);
+      await userEvent.clear(inputField);
+      await userEvent.type(inputField, "2022-12-17T11:10");
 
-        await userEvent.type(inputField, "10/31/1999 06:00 PM");
-
-       expect(inputField).toHaveValue("10/31/1999 06:00 PM");
-     });
-     */
+      expect(inputField).toHaveValue("2022-12-17T11:10");
+    });
   });
 
   describe("Event Description Input Field", () => {
@@ -129,5 +127,35 @@ describe("Create Entry Form Proper", () => {
     //should be invalid because it is required and no value was passed
     expect(eventDateInput).toBeInvalid();
     expect(eventDescInput).toBeInvalid();
+  });
+
+  it("successfully adds a new record", async () => {
+    render(<NewEntryForm />);
+
+    const submitBtn = screen.getByRole("button", { name: /Submit/i });
+    const eventNameInput = screen.getByRole("textbox", { name: /Event Name/i });
+    const eventDateInput = screen.getByLabelText(/Event Date/i);
+    const eventDescInput = screen.getByRole("textbox", {
+      name: /Event Description/i,
+    });
+    const result: Object[] = [];
+
+    await userEvent.type(eventNameInput, "Birthday");
+    await userEvent.type(eventDescInput, "Sample Description");
+    await userEvent.type(eventDateInput, "2022-12-17T11:10");
+
+    // await userEvent.click(submitBtn);
+    // encountering problems with async - not waiting addRecord event in submit button to fnish before getAllRecord.
+
+    // testing implementation here
+    await addRecord({
+      eventName: "Birthday",
+      eventDescription: "Sample Description",
+      eventDate: "2022-12-17T11:10",
+    });
+
+    await getAllRecord(result);
+
+    await waitFor(() => expect(result).toHaveLength(1));
   });
 });
