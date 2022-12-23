@@ -1,6 +1,7 @@
 ---
 import RootLayout from "@layouts/RootLayout.astro";
 import Sidebar from "@components/sidebar";
+import EventsList from "@features/events-list";
 ---
 
 <RootLayout title='View Entries'>
@@ -10,6 +11,7 @@ import Sidebar from "@components/sidebar";
       <h1 class='text-3xl tracking-wider uppercase font-bold text-center'>
         View Events
       </h1>
+      <EventsList client:load />
     </section>
   </main>
 </RootLayout>

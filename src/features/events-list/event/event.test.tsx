@@ -1,13 +1,8 @@
-import { screen, render, waitFor } from "@testing-library/react";
+import { screen, render } from "@testing-library/react";
 // import { addRecord, getRecord } from "@utils/indexedDb";
 import { addRecord, getRecord } from "../../../utils/indexedDb";
 import Event from ".";
-
-const mockEventInformation = {
-  eventName: "Sample Event Name",
-  eventDate: "2022-12-17T11:10",
-  eventDescription: "Sample Event Description",
-};
+import { mockEventInformation } from "test-constants/mockEvent";
 
 describe("Events List Component", () => {
   beforeAll(async () => {

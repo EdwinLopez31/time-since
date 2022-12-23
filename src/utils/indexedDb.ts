@@ -65,7 +65,6 @@ export const getAllRecord: () => Promise<EventEntryList> = async () => {
       let transaction = indexedDB.transaction("events", "readonly");
       let eventStore = transaction.objectStore("events");
       let getAllEvents = eventStore.getAll();
-
       getAllEvents.onsuccess = () => {
         resolve(getAllEvents.result);
       };
