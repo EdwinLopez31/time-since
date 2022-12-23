@@ -1,17 +1,15 @@
 ---
 import RootLayout from "@layouts/RootLayout.astro";
 import Sidebar from "@components/sidebar";
-import NewEntryForm from "@features/new-entry-form";
 ---
 
-<RootLayout title='Create New Entry'>
+<RootLayout title='View Entries'>
   <main class='min-h-screen flex'>
     <Sidebar />
     <section class='w-full grid place-content-center gap-8'>
       <h1 class='text-3xl tracking-wider uppercase font-bold text-center'>
-        Create New entry
+        View Events
       </h1>
-      <NewEntryForm client:only />
     </section>
   </main>
 </RootLayout>

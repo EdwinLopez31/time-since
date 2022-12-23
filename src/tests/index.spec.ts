@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
-test("meta is correct", async ({ page }) => {
+test("page title is correct", async ({ page }) => {
   await page.goto("http://localhost:3000/new-entry");
 
-  await expect(page).toHaveTitle(/Create Entry/i);
+  await expect(page).toHaveTitle(/Create New Entry/i);
 });

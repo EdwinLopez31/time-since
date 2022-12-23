@@ -132,13 +132,12 @@ describe("Create Entry Form Proper", () => {
   it("successfully adds a new record", async () => {
     render(<NewEntryForm />);
 
-    const submitBtn = screen.getByRole("button", { name: /Submit/i });
+    // const submitBtn = screen.getByRole("button", { name: /Submit/i });
     const eventNameInput = screen.getByRole("textbox", { name: /Event Name/i });
     const eventDateInput = screen.getByLabelText(/Event Date/i);
     const eventDescInput = screen.getByRole("textbox", {
       name: /Event Description/i,
     });
-    const result: Object[] = [];
 
     await userEvent.type(eventNameInput, "Birthday");
     await userEvent.type(eventDescInput, "Sample Description");
@@ -147,14 +146,14 @@ describe("Create Entry Form Proper", () => {
     // await userEvent.click(submitBtn);
     // encountering problems with async - not waiting addRecord event in submit button to fnish before getAllRecord.
 
-    // testing implementation here
+    // testing the implementation of the submit button here
     await addRecord({
       eventName: "Birthday",
       eventDescription: "Sample Description",
       eventDate: "2022-12-17T11:10",
     });
 
-    await getAllRecord(result);
+    const result = await getAllRecord();
 
     await waitFor(() => expect(result).toHaveLength(1));
   });
