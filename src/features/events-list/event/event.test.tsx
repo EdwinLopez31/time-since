@@ -48,11 +48,9 @@ describe("Events List Component", () => {
 
       render(<Event eventInformation={event} />);
 
-      expect(
-        screen.getByRole("paragraph", {
-          name: mockEventInformation.eventDescription,
-        })
-      ).toBeInTheDocument();
+      expect(screen.getByRole("paragraph")).toHaveTextContent(
+        event.eventDescription
+      );
     });
   });
 });
