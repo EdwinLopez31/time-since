@@ -22,11 +22,11 @@ const EventsList = () => {
     return <p>Loading...</p>;
   }
   return (
-    <>
+    <div className='grid grid-cols-1 xl:grid-cols-2 gap-8'>
       {events?.map((event: EventEntry) => (
         <Event key={event.id} eventInformation={event} />
       ))}
-    </>
+    </div>
   );
 };
 

@@ -14,6 +14,12 @@ const NewEntryForm = () => {
   // for large forms it is better to use uncontrolled components, because every keystroke triggers a rerender
   // I suggest using react-hook-form library
 
+  const resetInputs = () => {
+    setEventName("");
+    setEventDate("");
+    setEventDescription("");
+  };
+
   const handleSubmit = async (submitEvt: React.FormEvent<HTMLFormElement>) => {
     submitEvt.preventDefault();
     if (eventName && eventDate && eventDescription) {
@@ -22,6 +28,7 @@ const NewEntryForm = () => {
         eventDate,
         eventDescription,
       });
+      resetInputs();
     }
   };
   return (
