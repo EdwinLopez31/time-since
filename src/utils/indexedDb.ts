@@ -35,13 +35,19 @@ export const addRecord = (record: EventEntry) => {
       indexedDB = request.result;
       let transaction = indexedDB.transaction("events", "readwrite");
       let store = transaction.objectStore("events");
-      store.put({
+
+      const addRecord = store.put({
         eventName: record.eventName,
         eventDate: record.eventDate,
         eventDescription: record.eventDescription,
       });
+      addRecord.onsuccess = () => {
+        resolve("Successfully added a new record");
+      };
 
-      resolve("Successfully added a new record");
+      addRecord.onerror = () => {
+        reject("An error has occured while adding a new record");
+      };
     };
 
     request.onerror = () => {
@@ -49,26 +55,24 @@ export const addRecord = (record: EventEntry) => {
     };
   });
 };
-export const getAllRecord = async (results: Object[]) => {
+
+export const getAllRecord: () => Promise<EventEntryList> = async () => {
   return new Promise(async (resolve, reject) => {
     const request = await connectToDB();
 
     request.onsuccess = () => {
       indexedDB = request.result;
       let transaction = indexedDB.transaction("events", "readonly");
-      let store = transaction.objectStore("events");
-      let cursor = store.openCursor();
+      let eventStore = transaction.objectStore("events");
+      let getAllEvents = eventStore.getAll();
 
-      cursor.onsuccess = () => {
-        const records = cursor.result;
-
-        if (records) {
-          results.push(records.value);
-          records.continue();
-        }
+      getAllEvents.onsuccess = () => {
+        resolve(getAllEvents.result);
       };
 
-      resolve("Successfully retrieved all the records");
+      getAllEvents.onerror = () => {
+        reject("An error occured while fetching the data");
+      };
     };
 
     request.onerror = () => {
@@ -84,10 +88,16 @@ export const deleteRecord = async (id: number) => {
     request.onsuccess = () => {
       indexedDB = request.result;
       let transaction = indexedDB.transaction("events", "readwrite");
-      let store = transaction.objectStore("events");
-      store.delete(id);
+      let eventStore = transaction.objectStore("events");
+      const deleteEvent = eventStore.delete(id);
 
-      resolve("Successfully Deleted Record");
+      deleteEvent.onsuccess = () => {
+        resolve("Successfully Deleted Record");
+      };
+
+      deleteEvent.onerror = () => {
+        reject("An error occured while fetching the data");
+      };
     };
 
     request.onerror = () => {
@@ -96,23 +106,25 @@ export const deleteRecord = async (id: number) => {
   });
 };
 
-export const getRecord = async (id: number, result: Object[]) => {
+export const getRecord: (id: number) => Promise<EventEntry> = async (
+  id: number
+) => {
   return new Promise(async (resolve, reject) => {
     const request = await connectToDB();
 
     request.onsuccess = () => {
       indexedDB = request.result;
       let transaction = indexedDB.transaction("events", "readonly");
-      let store = transaction.objectStore("events");
-      let cursor = store.openCursor(id);
+      let eventStore = transaction.objectStore("events");
+      let selectedEvent = eventStore.get(id);
 
-      cursor.onsuccess = () => {
-        const record = cursor.result;
-        if (record) {
-          result.push(record.value);
-        }
+      selectedEvent.onsuccess = () => {
+        resolve(selectedEvent.result);
       };
-      resolve("Successfully Retrieved Record");
+
+      selectedEvent.onerror = () => {
+        reject("An error occured while fetching the data");
+      };
     };
 
     request.onerror = () => {
