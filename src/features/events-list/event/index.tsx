@@ -5,7 +5,13 @@ interface EventProps {
 }
 
 const Event = ({ eventInformation }: EventProps) => {
-  return <div>Event</div>;
+  return (
+    <article>
+      <h1>{eventInformation.eventName}</h1>
+      <h2>{eventInformation.eventDate}</h2>
+      <p role='paragraph'>{eventInformation.eventDescription}</p>
+    </article>
+  );
 };
 
 export default Event;
