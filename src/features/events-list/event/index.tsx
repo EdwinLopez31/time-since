@@ -1,5 +1,5 @@
-import { toShortDateFormat } from "@utils/date/toShortDateFormat";
-
+import { toShortDateFormat } from "../../../utils/date/toShortDateFormat";
+// import { toShortDateFormat } from "@utils/date/toShortDateFormat";
 interface EventProps {
   eventInformation: EventEntry;
 }

@@ -1,8 +1,10 @@
 import { screen, render } from "@testing-library/react";
 // import { addRecord, getRecord } from "@utils/indexedDb";
+// import { toShortDateFormat } from "@utils/date/toShortDateFormat";
 import { addRecord, getRecord } from "../../../utils/indexedDb";
 import Event from ".";
 import { mockEventInformation } from "test-constants/mockEvent";
+import { toShortDateFormat } from "../../../utils/date/toShortDateFormat";
 
 describe("Events List Component", () => {
   beforeAll(async () => {
@@ -34,7 +36,9 @@ describe("Events List Component", () => {
       render(<Event eventInformation={event} />);
 
       expect(
-        screen.getByRole("heading", { name: mockEventInformation.eventDate })
+        screen.getByRole("heading", {
+          name: toShortDateFormat(mockEventInformation.eventDate),
+        })
       ).toBeInTheDocument();
     });
 
