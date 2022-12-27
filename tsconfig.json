@@ -1,9 +1,10 @@
 {
   "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
+    "lib": ["es5", "es6", "dom"],
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "paths": {
       "@icons/*": ["icons/*"],
       "@components/*": ["components/*"],
@@ -13,5 +14,7 @@
       "@utils/*": ["utils/*"]
     },
     "types": ["jest", "@testing-library/jest-dom"]
-  }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "./src/**/*"],
+  "exclude": ["node_modules"]
 }

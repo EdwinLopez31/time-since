@@ -32,7 +32,7 @@ const InputField = (props: InputFieldProps) => {
           placeholder={placeholder}
           id={id}
           value={value}
-          className={`p-2 peer h-40 focus:border-l-[0.5rem] outline-none transition-[border] duration-100 border-2  w-full ${
+          className={`p-2 peer h-40 focus:border-l-[0.5rem] outline-none transition-[border] bg-white/5 duration-100 border-2  w-full ${
             value !== "" && "invalid:border-red-500"
           }  text-time-since-white placeholder-transparent focus:outline-none bg-transparent resize-none z-10`}
         />
@@ -49,7 +49,7 @@ const InputField = (props: InputFieldProps) => {
         id={id}
         type={type}
         value={value}
-        className={`p-2 peer h-10 focus:border-l-[0.5rem] outline-none transition-[border] duration-100 border-2 w-full ${
+        className={`p-2 peer h-10 focus:border-l-[0.5rem] outline-none transition-[border] bg-white/5 duration-100 border-2 w-full ${
           value !== "" && "invalid:border-red-500"
         }  text-time-since-white placeholder-transparent focus:outline-none bg-transparent z-10`}
       />
